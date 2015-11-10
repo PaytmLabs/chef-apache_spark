@@ -78,7 +78,7 @@ master_host_port = format(
 monit_wrapper_monitor service_name do
   template_source 'pattern-based_service.conf.erb'
   template_cookbook 'monit_wrapper'
-  wait_for_host_port master_host_port
+  #wait_for_host_port master_host_port
   variables \
     cmd_line_pattern: 'java.* org\.apache\.spark\.deploy\.worker\.Worker ',
     cmd_line: worker_runner_script,
@@ -88,7 +88,7 @@ end
 
 monit_wrapper_service service_name do
   action :start
-  wait_for_host_port master_host_port
+  #wait_for_host_port master_host_port
 
   # Determine the "notification action" based on whether the service is running at recipe compile
   # time. This is important because if the service is not running when the Chef run starts, it will
